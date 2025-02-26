@@ -5,7 +5,7 @@ export function CreateElement(element, parent, className, type, content) {
 
   if (element === "input") {
     newElement.type = type;
-  } else if (element === "p" || element === "h1") {
+  } else if (["h1", "h2", "h3", "p"].includes(element)) {
     newElement.textContent = content;
   }
 
