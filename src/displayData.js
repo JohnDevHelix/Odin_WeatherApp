@@ -1,8 +1,16 @@
 import { CreateElement } from "./createElement";
 import { container } from ".";
 import { UnitToggle } from "./unitToggle";
+import { AddImages } from "./addImages";
 
-export function DisplayData(address, condition, feels, humid, temp) {
+export function DisplayData(
+  address,
+  condition,
+  description,
+  feels,
+  humid,
+  temp
+) {
   const addressContent = CreateElement(
     "h1",
     container,
@@ -10,12 +18,20 @@ export function DisplayData(address, condition, feels, humid, temp) {
     undefined,
     address
   );
+  const imageContainer = CreateElement("div", container, "image-container");
   const conditionContent = CreateElement(
-    "p",
+    "h2",
     container,
-    "contents",
+    "h2-content",
     undefined,
     condition
+  );
+  const descriptionContent = CreateElement(
+    "h3",
+    container,
+    "h3-content",
+    undefined,
+    description
   );
   const feelsContent = CreateElement(
     "p",
@@ -42,5 +58,6 @@ export function DisplayData(address, condition, feels, humid, temp) {
   );
   tempContent.id = "temperature";
 
+  //   AddImages();
   UnitToggle(feels, humid, temp);
 }
