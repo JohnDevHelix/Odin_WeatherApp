@@ -12,11 +12,12 @@ export async function Weather(value) {
     console.log(weatherData);
     const address = weatherData.resolvedAddress;
     const conditions = weatherData.currentConditions.conditions;
+    const description = weatherData.description;
     const feelslike = weatherData.currentConditions.feelslike;
     const humidity = weatherData.currentConditions.humidity;
     const temp = weatherData.currentConditions.temp;
 
-    DisplayData(address, conditions, feelslike, humidity, temp);
+    DisplayData(address, conditions, description, feelslike, humidity, temp);
   } catch {
     const errorContent = CreateElement(
       "h1",
