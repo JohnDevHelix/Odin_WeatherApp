@@ -9,7 +9,8 @@ export function DisplayData(
   description,
   feels,
   humid,
-  temp
+  temp,
+  time
 ) {
   const addressContent = CreateElement(
     "h1",
@@ -58,6 +59,6 @@ export function DisplayData(
   );
   tempContent.id = "temperature";
 
-  //   AddImages();
   UnitToggle(feels, humid, temp);
+  AddImages(time);
 }

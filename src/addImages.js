@@ -1,4 +1,5 @@
 import { CreateElement } from "./createElement";
+import { weatherList } from "./weatherList";
 
 // Icons
 import cloudyIcon from "./public/images/icons/cloudy-icon.png";
@@ -32,131 +33,119 @@ import tornadoBg from "./public/images/background/tornado-bg.jpg";
 import lightningBg from "./public/images/background/lightning-bg.jpg";
 import freezingFogBg from "./public/images/background/freezingfog-bg.jpg";
 
-export function AddImages() {
+export function AddImages(time) {
   const imgContainer = document.querySelector(".image-container");
   const condition = document.querySelector(".h2-content");
   const img = CreateElement("img", imgContainer, "condition-img");
 
-  const weather = [
-    "Partially cloudy",
-    "Sky Coverage Increasing",
-    "Clear",
-    "Sky Coverage Decreasing",
-    "Blowing Or Drifting Snow",
-    "Heavy Rain And Snow",
-  ];
+  let weather = "";
+  console.log(time);
+  let meridiem = "";
+  const currentTime = parseInt(time);
 
-  //   function addBackgroundImage(image) {
-  //     document.body.style.backgroundImage = `url(${image})`;
-  //   }
+  currentTime >= 0 && currentTime < 12 ? (meridiem = "am") : (meridiem = "pm");
 
-  //   switch (condition.textContent) {
-  //     case "Partially cloudy":
-  //     case "Sky Coverage Increasing": {
-  //       img.src = partiallyCloudy;
-  //       img.setAttribute("alt", "Partially cloudy");
-  //       addBackgroundImage(cloudy);
-  //       break;
-  //     }
-  //     case "Clear":
-  //     case "Sky Coverage Decreasing": {
-  //       img.src = clearSky;
-  //       img.setAttribute("alt", "Clear Sky");
-  //       addBackgroundImage(clear);
-  //       break;
-  //     }
-  //     case "Blowing Or Drifting Snow":
-  //     case "Heavy Rain And Snow":
-  //     case "Light Rain And Snow":
-  //     case "Snow":
-  //     case "Snow And Rain Showers":
-  //     case "Snow Showers":
-  //     case "Heavy Snow":
-  //     case "Light Snow": {
-  //       img.src = blowingSnow;
-  //       img.setAttribute("alt", "Blowing Or Drifting Snow");
-  //       break;
-  //     }
-  //     case "Overcast": {
-  //       img.src = overcast;
-  //       img.setAttribute("alt", "Overcast Sky");
-  //       break;
-  //     }
-  //     case "Rain":
-  //     case "Rain, Partially cloudy":
-  //     case "Rain, Overcast":
-  //     case "Rain Showers":
-  //     case "Heavy Rain":
-  //     case "Light Rain":
-  //     case "Heavy Drizzle/Rain":
-  //     case "Light Drizzle/Rain": {
-  //       img.src = raining;
-  //       img.setAttribute("alt", "Raining");
-  //       break;
-  //     }
-  //     case "Heavy Freezing Drizzle/Freezing Rain":
-  //     case "Light Freezing Drizzle/Freezing Rain":
-  //     case "Heavy Freezing Rain":
-  //     case "Light Freezing Rain":
-  //     case "Ice":
-  //     case "Freezing Drizzle/Freezing Rain": {
-  //       img.src = freezingRain;
-  //       img.setAttribute("alt", "Freezing Rain");
-  //       break;
-  //     }
-  //     case "Freezing Fog": {
-  //       img.src = freezingFog;
-  //       img.setAttribute("alt", "Freezing Fog");
-  //       break;
-  //     }
-  //     case "Tornado": {
-  //       img.src = tornado;
-  //       img.setAttribute("alt", "Tornado");
-  //       break;
-  //     }
-  //     case "Hail Showers":
-  //     case "Hail": {
-  //       img.src = hail;
-  //       img.setAttribute("alt", "Hail Showers");
-  //       break;
-  //     }
-  //     case "Lightning Without Thunder": {
-  //       img.src = lightning;
-  //       img.setAttribute("alt", "Lightning Without Thunder");
-  //       break;
-  //     }
-  //     case "Mist":
-  //     case "Smoke Or Haze":
-  //     case "Fog": {
-  //       img.src = mist;
-  //       img.setAttribute("alt", "Misty Forest");
-  //       break;
-  //     }
-  //     case "Drizzle":
-  //     case "Heavy Drizzle":
-  //     case "Light Drizzle": {
-  //       img.src = drizzle;
-  //       img.setAttribute("alt", "Drizzle Rain");
-  //       break;
-  //     }
-  //     case "Squalls": {
-  //       img.src = squalls;
-  //       img.setAttribute("alt", "Teton Squalls");
-  //       break;
-  //     }
-  //     case "Thunderstorm":
-  //     case "Thunderstorm Without Precipitation": {
-  //       img.src = thunderstorm;
-  //       img.setAttribute("alt", "Thunderstorms");
-  //       break;
-  //     }
-  //     case "Dust storm": {
-  //       img.src = dustStorm;
-  //       img.setAttribute("alt", "Dust Storm");
-  //       break;
-  //     }
-  //     default:
-  //       img.src = partiallyCloudy;
-  //       img.setAttribute("alt", "Partially cloudy");
-  //   }
+  console.log(meridiem);
+
+  for (let i = 0; i < weatherList.length; i++) {
+    if (condition.textContent.includes(weatherList[i])) {
+      weather = weatherList[i];
+      addBackgroundImage(weather);
+      switch (weather) {
+        case "Partially cloudy":
+        case "Sky Coverage Increasing": {
+          addBackgroundImage(cloudyIcon, weather, cloudyBg);
+          break;
+        }
+        case "Clear":
+        case "Sky Coverage Decreasing": {
+          addBackgroundImage(clearIcon, weather, clearBg);
+          break;
+        }
+        case "Blowing Or Drifting Snow":
+        case "Heavy Rain And Snow":
+        case "Light Rain And Snow":
+        case "Snow":
+        case "Snow And Rain Showers":
+        case "Snow Showers":
+        case "Heavy Snow":
+        case "Light Snow": {
+          addBackgroundImage(snowyIcon, weather, snowyBg);
+          break;
+        }
+        case "Overcast": {
+          addBackgroundImage(overcastIcon, weather, overcastBg);
+          break;
+        }
+        case "Rain":
+        case "Rain, Partially cloudy":
+        case "Rain, Overcast":
+        case "Rain Showers":
+        case "Heavy Rain":
+        case "Light Rain":
+        case "Heavy Drizzle/Rain":
+        case "Light Drizzle/Rain": {
+          addBackgroundImage(rainingIcon, weather, rainingBg);
+          break;
+        }
+        case "Heavy Freezing Drizzle/Freezing Rain":
+        case "Light Freezing Drizzle/Freezing Rain":
+        case "Heavy Freezing Rain":
+        case "Light Freezing Rain":
+        case "Ice":
+        case "Freezing Drizzle/Freezing Rain":
+        case "Hail Showers":
+        case "Hail": {
+          addBackgroundImage(hailIcon, weather, hailBg);
+          break;
+        }
+        case "Freezing Fog": {
+          addBackgroundImage(freezingFogIcon, weather, freezingFogBg);
+          break;
+        }
+        case "Tornado": {
+          addBackgroundImage(tornadoIcon, weather, tornadoBg);
+          break;
+        }
+        case "Lightning Without Thunder": {
+          addBackgroundImage(lightningIcon, weather, lightningBg);
+          break;
+        }
+        case "Mist":
+        case "Smoke Or Haze":
+        case "Fog": {
+          addBackgroundImage(fogIcon, weather, fogBg);
+          break;
+        }
+        case "Drizzle":
+        case "Heavy Drizzle":
+        case "Light Drizzle": {
+          addBackgroundImage(drizzleIcon, weather, drizzleBg);
+          break;
+        }
+        case "Squalls": {
+          addBackgroundImage(squallsIcon, weather, squallsBg);
+          break;
+        }
+        case "Thunderstorm":
+        case "Thunderstorm Without Precipitation": {
+          addBackgroundImage(thunderstormIcon, weather, thunderstormBg);
+          break;
+        }
+        case "Dust storm": {
+          addBackgroundImage(dustIcon, weather, dustBg);
+          break;
+        }
+        default:
+          addBackgroundImage(clearIcon, weather, clearBg);
+      }
+      break;
+    }
+
+    function addBackgroundImage(source, altName, bgUrl) {
+      img.src = source;
+      img.setAttribute("alt", altName);
+      document.body.style.backgroundImage = `url(${bgUrl})`;
+    }
+  }
 }

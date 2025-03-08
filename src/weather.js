@@ -9,15 +9,23 @@ export async function Weather(value) {
       { mode: "cors" }
     );
     const weatherData = await response.json();
-    console.log(weatherData);
     const address = weatherData.resolvedAddress;
     const conditions = weatherData.currentConditions.conditions;
-    const description = weatherData.description;
+    const description = weatherData.days[0].description;
     const feelslike = weatherData.currentConditions.feelslike;
     const humidity = weatherData.currentConditions.humidity;
     const temp = weatherData.currentConditions.temp;
-
-    DisplayData(address, conditions, description, feelslike, humidity, temp);
+    const time = weatherData.currentConditions.datetime;
+    console.log(weatherData);
+    DisplayData(
+      address,
+      conditions,
+      description,
+      feelslike,
+      humidity,
+      temp,
+      time
+    );
   } catch {
     const errorContent = CreateElement(
       "h1",
