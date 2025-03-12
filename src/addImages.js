@@ -59,7 +59,6 @@ export function AddImages(time) {
     currentTime >= 6 && currentTime < 19 ? "dayTime" : "nightTime";
 
   const weather = weatherList.find((w) => condition.textContent.includes(w));
-  console.log(weather);
   switch (weather) {
     case "Partially cloudy":
     case "Sky Coverage Increasing": {

@@ -16,7 +16,6 @@ export async function Weather(value) {
     const humidity = weatherData.currentConditions.humidity;
     const temp = weatherData.currentConditions.temp;
     const time = weatherData.currentConditions.datetime;
-    console.log(weatherData);
     DisplayData(
       address,
       conditions,
